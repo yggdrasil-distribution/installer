@@ -21,4 +21,6 @@ This repository contains the scripts required to get the OS up and running.
   - links
   - tmux
   - chroot
+  - lvm2
+  - cryptsetup
   - vi
