@@ -16,7 +16,7 @@ echo "Packing Yggdrasil into $DESTINATION_DIR..."
 
 # Clean the DESTINATION_DIR
 rm -rf "$DESTINATION_DIR"
-rm "${BUILD_DIR}/${DEPLOY_DIR}.tar.xz"
+rm "${BUILD_DIR}/${DEPLOY_DIR}.tar.xz" || echo "No tarball to clean"
 mkdir -p "$DESTINATION_DIR"
 
 
@@ -59,10 +59,10 @@ tar cf "${DEPLOY_DIR}.tar" "$DEPLOY_DIR"
 xz -9vT0 "${DEPLOY_DIR}.tar"
 
 # Verify
-echo "Final tarball size"
+echo "Final tarball size:"
 ls -lha "${DEPLOY_DIR}.tar.xz"
 echo ""
-echo "Tarball contents"
+echo "Tarball contents:"
 tar vtf "${DEPLOY_DIR}.tar.xz"
 
 cd "$project_dir"
