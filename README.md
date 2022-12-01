@@ -24,3 +24,4 @@ This repository contains the scripts required to get the OS up and running.
   - lvm2
   - cryptsetup
   - vi
+  - python
