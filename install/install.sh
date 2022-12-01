@@ -7,7 +7,7 @@
 #   ##  ##   ### ##    ##    ##    ##     ## ##       ##
 #  #### ##    ##  ######     ##    ##     ## ######## ########
 ##############################################################
-## Run this script to install Yggdrasil
+## Run this script from the "yggdrasil_installer" directory to install Yggdrasil
 
 clear && printf "\
   ___           _        _ _   \n\
@@ -17,3 +17,15 @@ clear && printf "\
  |___|_| |_|___/\__\__,_|_|_|  \n\
                                \n\
  Congratulations! You have begun the installation of Yggdrasil.\n"
+sleep 1
+
+if [ "$(basename "$(pwd)")" = "yggdrasil_installer" ]; then
+  echo ""
+else
+  echo "Please cd into the \"yggdrasil_installer\" directory to start the installation in order to avoid any unfortunate mishaps."
+  exit 1
+fi
+
+mkdir -pv "/mnt/gentoo"
+
+rm -rf "/mnt/gentoo"

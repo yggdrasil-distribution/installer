@@ -29,12 +29,18 @@ cp "LICENSE" "$DESTINATION_DIR"
 # Include install directory
 cp -r install "$DESTINATION_DIR"
 
+# Include toolbox directory
+cp -r toolbox "$DESTINATION_DIR"
+
 # Make scripts executable
 mk_exec () {
   chmod +rx "$1"
 }
-
 find "$DESTINATION_DIR" -type f -name "*.sh" \
+  | while read -r script; do
+    mk_exec "$script"
+  done
+find "$DESTINATION_DIR" -type f -name "*.py" \
   | while read -r script; do
     mk_exec "$script"
   done
