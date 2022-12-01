@@ -43,6 +43,26 @@ is_root_user () {
 is_root_user
 is_correct_dir
 
+# Unpack the source files into a directory and add them to the path
+mkdir -pv ".path_addition"
+find "toolbox" -type f | while read -r tool;
+do
+  destination_name="$(basename "$tool" | awk -F "." '{print $1}')"
+  cp "$tool" ".path_addition/$destination_name"
+done
+find "install" -type f | while read -r script;
+do
+  destination_name="$(basename "$script")"
+  cp "$script" ".path_addition/$destination_name"
+done
+chmod -R +rx ".path_addition"
+PATH="$PATH:$(pwd)/.path_addition"
+
+# Source installation configuration
+. "install/install.conf"
+
 mkdir -pv "/mnt/gentoo"
 
+# Clean up
+rm -rf ".path_addition"
 rm -rf "/mnt/gentoo"
